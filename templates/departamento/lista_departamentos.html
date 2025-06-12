@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departamentos</title>
+
+    <style>
+        .color {
+            background-color: rgb(56, 82, 122);
+            padding: 10px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-2"></div>
+    <nav>
+        <ul>
+            <a href="/" class="btn btn-secondary mb-0">← Volver</a>
+        </ul>
+    </nav>
+
+    <div class="color">
+        <h1> Lista de Departamentos </h1>
+    </div>
+
+    <div class="container mt-4 d-flex justify-content-center">
+        <div style="max-width: 600px; width: 100%;">
+            <a href="{% url 'departamento-crear' %}" class="btn btn-success mb-3">Agregar nuevo departamento</a>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for depto in lista_departamento %}
+                        <tr>
+                            <td>{{ depto.nombre }}</td>
+                            <td>
+                                <a href="{% url 'departamento-detail' depto.pk %}" class="btn btn-sm btn-info me-1" title="Ver">🔍</a>
+                                <a href="{% url 'departamento-editar' depto.pk %}" class="btn btn-sm btn-warning text-white me-1" title="Editar">✏️</a>
+                                <a href="{% url 'departamento-eliminar' depto.pk %}" class="btn btn-sm btn-danger" title="Eliminar">🗑️</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2" class="text-center">No hay departamentos registrados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
