@@ -39,7 +39,6 @@ class Empleado(models.Model):
     email = models.EmailField('Email', max_length=254, blank=True, null=True)
     observaciones = CKEditor5Field('Observaciones', config_name='default', blank=True)
 
-    @property
     def edad(self):
         today = date.today()
         return today.year - self.fecha_nac.year - ((today.month, today.day) < (self.fecha_nac.month, self.fecha_nac.day))
