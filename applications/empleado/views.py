@@ -21,7 +21,7 @@ class ListarEmpleados(ListView):
         query = self.request.GET.get('q')
 
         if query:
-            query = query.strip()  # Elimina espacios extras
+            query = query.strip()
             queryset = queryset.filter(
                 (
                     Q(nombre__icontains=query) |
